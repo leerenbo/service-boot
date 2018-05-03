@@ -1,0 +1,44 @@
+@charset "gb2312";
+/* CSS Document */
+html{  margin:0 auto; }
+body{margin:0; padding:0; min-width:1200px; min-height:900px; font-family:Arial,Î¢ÈíÑÅºÚ; color:#000; margin:0 auto; background:#fff url(../images/bg.png) no-repeat top center;}
+ul{margin:0; padding:0;}
+ul li{list-style:none;}
+img{border:none; max-width:100%;}
+a{text-decoration:none;color:#000;}
+.clear{ clear:both;}
+h1,h2,h3,h4{ padding:0 ; margin:0; font-weight:normal}
+.left{ float:left}
+.right{float:right;}
+
+.box{width:1200px; height:450px; margin:0 auto;background:#1D1919; border-radius:5px; -webkit-box-shadow:0px 5px 20px rgba(27, 25, 19, .5); -moz-box-shadow:0px 5px 20px rgba(27, 25, 19, .5);   box-shadow:0px 5px 20px rgba(27, 25, 19, .5)  }
+.itembox{width:346px; height:400px; background:#FFF;}
+.boxWrap{width:344px; height:476px; float:left; margin-top:40px; margin-left:43px;}
+.boxWrap p{ text-align:center;}
+.boxWrap .item{width:343px; height:400px; background:#fff; border-radius:5px; -webkit-box-shadow:0px 5px 20px rgba(27, 25, 19, .5);   -moz-box-shadow:0px 5px 20px rgba(27, 25, 19, .5);   box-shadow:0px 5px 20px rgba(27, 25, 19, .5) }
+.boxWrap .item ul{ padding-top:40px;}
+.boxWrap .item ul li{height:50px; width:120px; line-height:50px; margin-left:128px;text-align:left; }
+.boxWrap .item ul li.work a{ color:#D0242E;}
+.boxWrap .item ul li a{ padding-bottom:5px; font-size:20px; padding-right:5px;}
+.boxWrap .item ul li a img{ position:absolute; margin-top:15px;}
+.boxWrap .item ul li a.hover{ border-bottom:#DA4953 solid 2px; }
+.itemLine{width:120px; float:left; margin-left:54px;}
+.itemLine,.itemLineTwo{width:120px; float:left;}
+.boxWrap .item ul.itemLine li,.boxWrap .item ul.itemLineTwo li{height:50px; width:120px; line-height:50px; text-align:left; margin-left:0;}
+.itemLineTwo li{ border-left:#D7D7D7 dotted 1px; padding-left:30px;}
+
+.footer{ text-align:center; color:#CECECE; font-size:12px; margin-top:58px;width:100%;}
+
+@media screen and (min-height:801px) and (max-height:1080px){
+.title{width:580px; min-height:200px; text-align:center; margin:0 auto;}
+.title img{ margin-top:78px; max-width:100%;}
+}
+
+@media screen and (min-height:501px) and (max-height:800px){
+.title{width:580px;height:140px; text-align:center; margin:0 auto;}
+.title img{ max-width:100%; margin-top:38px;}
+}
+@media screen and (min-height:200px)and (max-height:500px){
+.title{width:580px;height:58px; text-align:center; margin:0 auto;}
+.title img{ max-width:100%; margin-top:0px;}
+}
