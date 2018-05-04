@@ -5,8 +5,6 @@ pipeline {
             args '--mount type=bind,source=/root/.m2,target=/root/.m2'
         }
     }
-    environment {
-    }
     stages {
         stage('Prepare') {
             steps {
