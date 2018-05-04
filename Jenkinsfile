@@ -2,37 +2,40 @@ pipeline {
     agent {
         docker {
             image 'leerenbo/git-java10-maven-ssh'
-            args '-p 8080:8080'
+            args '--mount type=bind,source=/root/.m2,target=/root/.m2'
         }
     }
     environment {
-        CI = 'true'
     }
     stages {
         stage('Prepare') {
             steps {
-                sh 'mkdir -p ~/.m2/'
-                sh 'cp jenkins/settings.xml ~/.m2/'
+                sh 'echo Prepare'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn package -Dmaven.test.skip=true'
+                sh 'mvn install -Dmaven.test.skip=true'
             }
         }
         stage('Test') {
             steps {
                 sh 'mvn surefire:test'
             }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
         }
         stage('Delivery') {
             steps {
-                sh ''
+                sh 'echo Delivery'
             }
         }
         stage('Deploy'){
             steps{
-                sh ''
+                sh 'echo Deploy'
             }
         }
     }
