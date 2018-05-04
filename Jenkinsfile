@@ -17,6 +17,9 @@ pipeline {
             }
         }
         stage('Delivery') {
+            when{
+                branch 'dev'
+            }
             steps {
                 sh 'mkdir -p /root/.ssh/'
                 sh 'cp jenkins/dev/id_rsa /root/.ssh/'
@@ -26,6 +29,9 @@ pipeline {
             }
         }
         stage('Deploy'){
+            when{
+                branch 'dev'
+            }
             steps{
                 sh 'bash jenkins/dev/deploy.sh'
             }
