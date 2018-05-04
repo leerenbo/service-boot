@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'leerenbo/git-java10-maven-ssh'
-            args '--mount type=bind,source=/root/.m2,target=/root/.m2'
+            args '--mount type=bind,source=/root/.m2,target=/root/.m2 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock'
         }
     }
     stages {
