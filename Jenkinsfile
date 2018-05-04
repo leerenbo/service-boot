@@ -19,6 +19,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn surefire:test'
+                sh 'ls -a service-boot-web/target/surefire-reports/'
             }
             post {
                 always {
