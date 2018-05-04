@@ -29,7 +29,7 @@ pipeline {
     }
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
+            junit 'service-boot-web/target/surefire-reports/*.xml'
         }
     }
 }
