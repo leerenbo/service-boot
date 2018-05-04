@@ -22,6 +22,7 @@ pipeline {
                 sh 'cp jenkins/id_rsa /root/.ssh/'
                 sh 'chmod 700 ~/.ssh'
                 sh 'chmod 600 ~/.ssh/id_rsa'
+                input "Does the staging environment look ok?"
                 sh 'scp service-boot-web/target/service-boot-web-0.0.1-SNAPSHOT.jar root@172.100.101.84/tmp/'
             }
         }
