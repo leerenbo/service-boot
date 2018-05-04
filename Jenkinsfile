@@ -15,11 +15,6 @@ pipeline {
             steps {
                 sh 'mvn install -U -B -e'
             }
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
-                }
-            }
         }
         stage('Delivery') {
             steps {
@@ -30,6 +25,11 @@ pipeline {
             steps{
                 sh 'echo Deploy'
             }
+        }
+    }
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
         }
     }
 }
