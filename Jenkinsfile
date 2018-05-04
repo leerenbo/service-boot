@@ -19,7 +19,7 @@ pipeline {
         stage('Delivery') {
             steps {
                 sh 'mkdir -p /root/.ssh/'
-                sh 'cp jenkins/id_rsa /root/.ssh/'
+                sh 'cp jenkins/dev/id_rsa /root/.ssh/'
                 sh 'chmod 700 ~/.ssh'
                 sh 'chmod 600 ~/.ssh/id_rsa'
                 sh 'scp -o StrictHostKeyChecking=no service-boot-web/target/service-boot-web-0.0.1-SNAPSHOT.jar root@172.100.101.84:/tmp/'
@@ -27,10 +27,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'ssh -o StrictHostKeyChecking=no root@172.100.101.84 -tt << remotessh'
-                sh 'docker rm -f service-boot-web'
-                sh 'docker run -d -p 8080:8080 -name service-boot-web --mount type=bind,source=/tmp/service-boot-web-0.0.1-SNAPSHOT.jar,target=/opt/jenkinsapp/service-boot-web-0.0.1-SNAPSHOT.jar leerenbo/git-java10-maven-ssh java -jar /opt/jenkinsapp/service-boot-web-0.0.1-SNAPSHOT.jar'
-                sh 'exit'
+                sh 'bash jenkins/dev/deploy.sh'
             }
         }
     }
