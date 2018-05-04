@@ -13,11 +13,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn install -U -B -e'
+                sh 'mvn install -U -B -e -Dmaven.test.skip=true'
             }
         }
         stage('Test') {
             steps {
+                sh 'mvn surefire:test'
                 sh 'pwd'
                 sh 'ls -a service-boot-web/target/'
             }
