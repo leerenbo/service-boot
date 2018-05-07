@@ -1,22 +1,33 @@
 package com.yibaijin.service.boot.web.controller;
 
-import com.yibaijin.service.boot.service.util.Constants;
-import org.springframework.boot.SpringApplication;
+import com.yibaijin.service.boot.web.dto.TestRequest;
+import com.yibaijin.service.boot.web.dto.TestResponse;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
+@Api()
 public class Example {
 
-    @RequestMapping("/")
-    String home() {
-        return "Hello Wasdfasdforld!2" + Constants.aaa;
+    @PostMapping("a/")
+    @ApiOperation(value = "样例接口", tags = "APP1.0", notes = "请求样例")
+    public TestResponse a(@RequestBody @Validated TestRequest testRequest) {
+        TestResponse re = new TestResponse();
+        re.setStr("aaaa");
+        return re;
     }
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(Example.class, args);
+    @GetMapping("b/")
+    @ApiOperation(value = "样例接口", tags = "APP1.0", notes = "请求样例")
+    public TestResponse b(@Validated TestRequest testRequest) {
+        TestResponse re = new TestResponse();
+        re.setStr("bbbb");
+        return re;
     }
+
 
 }
