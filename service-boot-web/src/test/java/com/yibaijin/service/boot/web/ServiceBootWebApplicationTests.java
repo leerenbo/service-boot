@@ -10,8 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ServiceBootWebApplicationTests {
 
     @Test
-    public void contextLoads() {
-        System.out.println(123);
+    public void test() {
+
     }
 
 }

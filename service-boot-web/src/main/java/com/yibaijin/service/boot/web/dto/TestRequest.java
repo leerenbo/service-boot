@@ -10,7 +10,7 @@ public class TestRequest {
     private Boolean bool;
     private Byte i8;
     private Short i16;
-    @ApiModelProperty(value = "整型", required = true)
+    @ApiModelProperty(value = "整型", required = true,example = "11")
     @Min(100l)
     private Integer i32 = 1;
     @Max(999l)
