@@ -1,12 +1,39 @@
 package com.yibaijin.service.boot.dao;
 
+import com.yibaijin.service.boot.dao.mapper.UserMapper;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication
-public class ServiceBootDaoApplication {
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+
+@SpringBootApplication(scanBasePackages = "com.yibaijin")
+@ImportResource("classpath*:application-context-*.xml")
+public class ServiceBootDaoApplication implements CommandLineRunner {
+
+    @Resource
+    DataSource dataSource;
+    @Resource
+    UserMapper userMapper;
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceBootDaoApplication.class, args);
+
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println(dataSource.getConnection());
+        System.out.println(userMapper);
     }
 }
