@@ -1,6 +1,5 @@
 package com.yibaijin.service.boot.dao;
 
-import com.yibaijin.service.boot.dao.mapper.UserMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,8 +14,6 @@ public class ServiceBootDaoApplication implements CommandLineRunner {
 
     @Resource
     DataSource dataSource;
-    @Resource
-    UserMapper userMapper;
 
     public DataSource getDataSource() {
         return dataSource;
@@ -28,12 +25,10 @@ public class ServiceBootDaoApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceBootDaoApplication.class, args);
-
     }
 
     @Override
     public void run(String... args) throws Exception {
         System.out.println(dataSource.getConnection());
-        System.out.println(userMapper);
     }
 }

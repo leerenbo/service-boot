@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- dev，开发本机运行jetty的日志配置 -->
+<configuration status="DEBUG">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss.SSS} %t [%p] %c{1} (%F:%L) %msg%n"/>
+        </Console>
+    </appenders>
+
+    <loggers>
+        <root level="debug">
+            <AppenderRef ref="Console"/>
+        </root>
+    </loggers>
+</configuration>

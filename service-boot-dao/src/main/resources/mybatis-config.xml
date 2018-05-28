@@ -23,7 +23,7 @@
         <!-- 默认执行超时时间 -->
         <setting name="defaultStatementTimeout" value="30"/>
         <!-- 下划线命名转驼峰命名-->
-        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--<setting name="mapUnderscoreToCamelCase" value="true"/>-->
         <!-- 默认开启“获取差入口自增主键的值”（仅insert语句） -->
         <setting name="useGeneratedKeys" value="true"/>
     </settings>
