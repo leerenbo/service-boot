@@ -24,8 +24,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private TokenStore tokenStore;
 
-
-
     @Autowired
     private UserApprovalHandler userApprovalHandler;
 
@@ -73,7 +71,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write", "trust")
-                .secret("somesecret")
+                .secret("{noop}somesecret")
                 .and()
                 .withClient("my-less-trusted-client")
                 .authorizedGrantTypes("authorization_code", "implicit")
