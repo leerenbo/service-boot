@@ -44,26 +44,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table schema="nybj" tableName="sys_user" domainObjectName="SysUserGPO">
-            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
-        </table>
-        <table schema="nybj" tableName="sys_role" domainObjectName="SysRoleGPO">
-            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
-        </table>
-        <table schema="nybj" tableName="sys_user_role_association" domainObjectName="SysUserRoleAssociationGPO">
-            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
-        </table>
-        <table schema="nybj" tableName="sys_group" domainObjectName="SysGroupGPO">
-            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
-        </table>
-        <table schema="nybj" tableName="sys_user_group_association" domainObjectName="SysUserGroupAssociationGPO">
-            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
-        </table>
-        <table schema="nybj" tableName="sys_function" domainObjectName="SysFunctionGPO">
-            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
-        </table>
-        <table schema="nybj" tableName="sys_role_function_association" domainObjectName="SysRoleFunctionAssociationGPO">
-            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        <table schema="nybj" tableName="user" domainObjectName="User">
+            <!--<generatedKey column="id" sqlStatement="JDBC"></generatedKey>-->
         </table>
     </context>
 </generatorConfiguration>
