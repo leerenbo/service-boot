@@ -27,4 +27,11 @@
         <!-- 默认开启“获取差入口自增主键的值”（仅insert语句） -->
         <setting name="useGeneratedKeys" value="true"/>
     </settings>
+
+    <plugins>
+        <plugin interceptor="com.yibaijin.service.boot.dao.interceptor.CtimeUtimeUidGidInterceptor">
+            <!--<property name="someProperty" value="100"/>-->
+        </plugin>
+    </plugins>
+
 </configuration>

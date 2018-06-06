@@ -1,5 +1,8 @@
 package com.yibaijin.service.boot.dao;
 
+import com.yibaijin.service.boot.dao.mapper.auth.AuthUserGroupAssociationMapper;
+import com.yibaijin.service.boot.dao.mapper.auth.AuthUserMapper;
+import com.yibaijin.service.boot.dao.model.db.auth.AuthUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -17,6 +20,8 @@ import java.sql.SQLException;
 @SpringBootTest
 public class ServiceBootDaoApplicationTests {
 
+    @Resource
+    AuthUserMapper authUserMapper;
 
     @Resource
     RedisTemplate<String,String> redisTemplate;
@@ -28,13 +33,7 @@ public class ServiceBootDaoApplicationTests {
 
     @Test
     public void test() throws SQLException {
-        RedisConnection conn = redisConnectionFactory.getConnection();
-        conn.openPipeline();
-        byte[] accessKey="asdf".getBytes();
-        byte[] serializedAccessToken="zxcv".getBytes();
-        conn.set(accessKey, serializedAccessToken);
-        conn.closePipeline();
-        conn.close();
+
 
     }
 

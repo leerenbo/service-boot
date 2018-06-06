@@ -30,22 +30,41 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.yibaijin.service.boot.dao.model.mysql.sys" targetProject="src/main/java/">
+        <javaModelGenerator targetPackage="com.yibaijin.service.boot.dao.model.db.auth"
+                            targetProject="src/main/java/">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mappers.generator.sys" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mappers.generator.auth" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yibaijin.service.boot.dao.mapper.sys"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yibaijin.service.boot.dao.mapper.auth"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table schema="nybj" tableName="user" domainObjectName="User">
-            <!--<generatedKey column="id" sqlStatement="JDBC"></generatedKey>-->
+        <table schema="nybj" tableName="auth_user">
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        </table>
+        <table schema="nybj" tableName="auth_user_role_association">
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        </table>
+        <table schema="nybj" tableName="auth_role">
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        </table>
+        <table schema="nybj" tableName="auth_group">
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        </table>
+        <table schema="nybj" tableName="auth_user_group_association">
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        </table>
+        <table schema="nybj" tableName="auth_function">
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        </table>
+        <table schema="nybj" tableName="auth_role_function_association">
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
     </context>
 </generatorConfiguration>
