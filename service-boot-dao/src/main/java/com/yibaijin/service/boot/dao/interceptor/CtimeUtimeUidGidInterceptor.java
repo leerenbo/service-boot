@@ -41,7 +41,7 @@ public class CtimeUtimeUidGidInterceptor implements Interceptor {
 
 
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (authentication != null && authentication.getDetails() != null) {
+            if (authentication != null && authentication.getDetails() instanceof UserFunctionRoleGroupDetails) {
                 UserFunctionRoleGroupDetails userDetails = (UserFunctionRoleGroupDetails) authentication.getDetails();
 
                 Field uidField = FieldUtils.getField(modelClass, "uid", true);

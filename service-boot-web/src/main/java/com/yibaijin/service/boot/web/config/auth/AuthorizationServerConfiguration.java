@@ -36,6 +36,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("password")
                 .authorities("user")
                 .secret("{noop}app")
+                .scopes("r","w")
         ;
     }
 

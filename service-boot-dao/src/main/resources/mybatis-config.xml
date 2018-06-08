@@ -26,7 +26,12 @@
         <!--<setting name="mapUnderscoreToCamelCase" value="true"/>-->
         <!-- 默认开启“获取差入口自增主键的值”（仅insert语句） -->
         <setting name="useGeneratedKeys" value="true"/>
+        <!-- 读取jdk8编译的参数名称 -->
+        <setting name="useActualParamName" value="true"/>
     </settings>
+    <typeHandlers>
+        <!--<typeHandler handler="com.yibaijin.service.boot.dao.mapper.ListTypeHandler"></typeHandler>-->
+    </typeHandlers>
 
     <plugins>
         <plugin interceptor="com.yibaijin.service.boot.dao.interceptor.CtimeUtimeUidGidInterceptor">

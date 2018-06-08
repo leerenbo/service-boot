@@ -1,13 +1,10 @@
 package com.yibaijin.service.boot.web.controller.app;
 
-import com.yibaijin.service.boot.web.ServiceBootWebApplication;
 import com.yibaijin.service.boot.web.ServiceBootWebApplicationTests;
-import com.yibaijin.service.boot.web.dto.request.RegistRequest;
+import com.yibaijin.service.boot.web.controller.app.dto.RegistRequest;
 import org.junit.Test;
 
 import javax.annotation.Resource;
-
-import static org.junit.Assert.*;
 
 public class UserControllerTest extends ServiceBootWebApplicationTests {
 

@@ -1,7 +1,9 @@
 package com.yibaijin.service.auth.service.service;
 
 import com.google.common.collect.Lists;
+import com.yibaijin.service.auth.service.service.auth.AuthUserDetailService;
 import com.yibaijin.service.boot.dao.model.auth.RoleAuthority;
+import com.yibaijin.service.boot.dao.model.auth.UserFunctionRoleGroupDetails;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ public class UserService {
     private AuthUserDetailService authUserDetailService;
 
 
-    public void regist(String username, String password, String phoneNumber, String code) {
+    public UserFunctionRoleGroupDetails regist(String username, String password, String phoneNumber, String code) {
         //todo 校验短信
-        User user = new User(username, password, Lists.newArrayList(new RoleAuthority(-1l)));
+        UserFunctionRoleGroupDetails user = new UserFunctionRoleGroupDetails(username, password);
+        user.setRoleAuthorities( Lists.newArrayList(new RoleAuthority(-1l)));
         authUserDetailService.createUser(user);
+        return user;
     }
 }

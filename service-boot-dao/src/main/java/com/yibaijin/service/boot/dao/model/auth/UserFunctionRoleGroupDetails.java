@@ -1,22 +1,32 @@
 package com.yibaijin.service.boot.dao.model.auth;
 
+import lombok.Getter;
 import org.apache.commons.collections.ListUtils;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+
+@RedisHash(value = "auth_userDetails",timeToLive = 1800L)
+@Getter
 public class UserFunctionRoleGroupDetails implements UserDetails {
 
-
-    private final Long uid;
-    private final String username;
+    private Long uid;
+    @Id
+    private String username;
     private String password;
-    private List<RoleAuthority> roleAuthorities;
-    private List<FunctionAuthority> functionAuthorities;
+    private List<RoleAuthority> roleAuthorities = Collections.emptyList();
+    private List<FunctionAuthority> functionAuthorities = Collections.emptyList();
     private GroupAuthority groupAuthority;
 
+    public UserFunctionRoleGroupDetails() {
+    }
 
     public Long getUid() {
         return uid;
@@ -55,6 +65,11 @@ public class UserFunctionRoleGroupDetails implements UserDetails {
         this.username = username;
     }
 
+    public UserFunctionRoleGroupDetails(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return ListUtils.union(roleAuthorities, functionAuthorities);
@@ -89,4 +104,6 @@ public class UserFunctionRoleGroupDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

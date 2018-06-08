@@ -1,5 +1,7 @@
 package com.yibaijin.service.boot.web.config.auth;
 
+import com.yibaijin.service.auth.service.service.auth.AuthUserDetailService;
+import com.yibaijin.service.boot.dao.model.auth.UserFunctionRoleGroupDetails;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,6 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    AuthUserDetailService userDetailService;
+
     Logger logger = LogManager.getLogger();
 
 
@@ -32,7 +38,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication().withUser("marissa").password("{noop}koala").roles("USER").and().withUser("paul")
 //                .password("{noop}emu").roles("USER");
-        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(NoOpPasswordEncoder.getInstance());
+//        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(NoOpPasswordEncoder.getInstance());
+        auth.userDetailsService(userDetailService).passwordEncoder(AuthUserDetailService.messageDigestPasswordEncoder);
+
     }
 
     @Override
