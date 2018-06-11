@@ -1,8 +1,8 @@
 package com.yibaijin.service.boot.dao.mapper.auth;
 
 import com.yibaijin.service.boot.dao.mapper.BaseMapper;
-import com.yibaijin.service.boot.dao.model.db.auth.AuthFunction;
-import com.yibaijin.service.boot.dao.model.db.auth.AuthFunctionExample;
+import com.yibaijin.service.boot.dao.model.db.auth.AuthRoleGPO;
+import com.yibaijin.service.boot.dao.model.db.auth.AuthRoleGPOExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -12,18 +12,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper
-public interface AuthFunctionMapper extends BaseMapper<AuthFunction, AuthFunctionExample> {
+public interface AuthRoleGPOMapper extends BaseMapper<AuthRoleGPO, AuthRoleGPOExample> {
 
-    @SelectProvider(type = AuthFunctionMapperProvider.class, method = "selectByIds")
-    List<AuthFunction> selectByIds(@Param("ids") List<Long> ids);
+    @SelectProvider(type = AuthRoleMapperProvider.class, method = "selectByIds")
+    List<AuthRoleGPO> selectByIds(@Param("ids") List<Long> ids);//
 
-    public static class AuthFunctionMapperProvider {
-        public static String selectByIds(@Param("ids") List<Long> ids) {
+    public static class AuthRoleMapperProvider {
+        public static String selectByIds(List<Long> ids) {//@Param("ids")
             return new SQL()
                     .SELECT("*")
-                    .FROM("auth_function")
+                    .FROM("auth_role")
                     .WHERE("id in (" + ids.stream().map(Object::toString).collect(Collectors.joining(",")) + ")")
                     .toString();
         }
     }
 }
+

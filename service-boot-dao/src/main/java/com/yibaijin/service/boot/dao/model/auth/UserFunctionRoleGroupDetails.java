@@ -1,6 +1,7 @@
 package com.yibaijin.service.boot.dao.model.auth;
 
 import lombok.Getter;
+import lombok.ToString;
 import org.apache.commons.collections.ListUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RedisHash(value = "auth_userDetails",timeToLive = 1800L)
 @Getter
+@ToString
 public class UserFunctionRoleGroupDetails implements UserDetails {
 
     private Long uid;

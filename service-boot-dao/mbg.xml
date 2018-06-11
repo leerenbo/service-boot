@@ -45,25 +45,25 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table schema="nybj" tableName="auth_user">
+        <table schema="nybj" tableName="auth_user" domainObjectName="AuthUserGPO">
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
-        <table schema="nybj" tableName="auth_user_role_association">
+        <table schema="nybj" tableName="auth_user_role_association" domainObjectName="AuthUserRoleAssociationGPO">
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
-        <table schema="nybj" tableName="auth_role">
+        <table schema="nybj" tableName="auth_role" domainObjectName="AuthRoleGPO">
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
-        <table schema="nybj" tableName="auth_group">
+        <table schema="nybj" tableName="auth_group" domainObjectName="AuthGroupGPO">
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
-        <table schema="nybj" tableName="auth_user_group_association">
+        <table schema="nybj" tableName="auth_user_group_association" domainObjectName="AuthUserGroupAssociationGPO">
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
-        <table schema="nybj" tableName="auth_function">
+        <table schema="nybj" tableName="auth_function" domainObjectName="AuthFunctionGPO">
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
-        <table schema="nybj" tableName="auth_role_function_association">
+        <table schema="nybj" tableName="auth_role_function_association" domainObjectName="AuthRoleFunctionAssociationGPO">
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
     </context>

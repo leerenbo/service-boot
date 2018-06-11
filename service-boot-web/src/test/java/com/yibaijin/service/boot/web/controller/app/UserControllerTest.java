@@ -13,10 +13,10 @@ public class UserControllerTest extends ServiceBootWebApplicationTests {
 
     @Test
     public void regist() {
-        RegistRequest registRequest = new RegistRequest();
-        registRequest.setUsername("lirenbo");
-        registRequest.setPassword("123");
-        userController.regist(registRequest);
+//        RegistRequest registRequest = new RegistRequest();
+//        registRequest.setUsername("lirenbo");
+//        registRequest.setPassword("123");
+//        userController.regist(registRequest);
     }
 
 }

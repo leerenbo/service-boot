@@ -19,9 +19,10 @@ public class FunctionAuthority implements GrantedAuthority {
     public FunctionAuthority() {
     }
 
-    public FunctionAuthority(Long id, String name,String url) {
+    public FunctionAuthority(Long id, String name, String url) {
         this.id = id;
         this.name = name;
+        this.url = url;
     }
 
     @Override

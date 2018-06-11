@@ -22,46 +22,46 @@ public class AuthUserDetailService implements UserDetailsManager {
     public static final MessageDigestPasswordEncoder messageDigestPasswordEncoder = new MessageDigestPasswordEncoder("MD5");
 
     @Resource
-    private AuthUserMapper authUserMapper;
+    private AuthUserGPOMapper authUserGPOMapper;
 
     @Resource
-    private AuthRoleMapper authRoleMapper;
+    private AuthRoleGPOMapper authRoleGPOMapper;
 
     @Resource
-    private AuthUserRoleAssociationMapper authUserRoleAssociationMapper;
+    private AuthUserRoleAssociationGPOMapper authUserRoleAssociationGPOMapper;
 
     @Resource
-    private AuthUserGroupAssociationMapper authUserGroupAssociationMapper;
+    private AuthUserGroupAssociationGPOMapper authUserGroupAssociationGPOMapper;
 
     @Resource
-    private AuthRoleFunctionAssociationMapper  authRoleFunctionAssociationMapper;
+    private AuthRoleFunctionAssociationGPOMapper authRoleFunctionAssociationMapper;
 
     @Resource
-    private AuthFunctionMapper authFunctionMapper;
+    private AuthFunctionGPOMapper authFunctionGPOMapper;
 
     @Resource
-    private AuthGroupMapper authGroupMapper;
+    private AuthGroupGPOMapper authGroupGPOMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AuthUser authUser = authUserMapper.selectByUsername(username);
-        if (authUser!=null) {
-            UserFunctionRoleGroupDetails userFunctionRoleGroupDetails = new UserFunctionRoleGroupDetails(authUser.getId(),authUser.getUsername());
-            userFunctionRoleGroupDetails.setPassword(authUser.getPassword());
+        AuthUserGPO authUserGPO = authUserGPOMapper.selectByUsername(username);
+        if (authUserGPO != null) {
+            UserFunctionRoleGroupDetails userFunctionRoleGroupDetails = new UserFunctionRoleGroupDetails(authUserGPO.getId(), authUserGPO.getUsername());
+            userFunctionRoleGroupDetails.setPassword(authUserGPO.getPassword());
 
-            List<Long> roleIds=authUserRoleAssociationMapper.selectRoleIdsByUserId(authUser.getId());
-            List<AuthRole> authRoles = authRoleMapper.selectByIds(roleIds);
-            userFunctionRoleGroupDetails.setRoleAuthorities(authRoles.stream().map(authRole -> new RoleAuthority(authRole.getId(),authRole.getName())).collect(Collectors.toList()));
+            List<Long> roleIds = authUserRoleAssociationGPOMapper.selectRoleIdsByUserId(authUserGPO.getId());
+            List<AuthRoleGPO> authRoleGPOS = authRoleGPOMapper.selectByIds(roleIds);
+            userFunctionRoleGroupDetails.setRoleAuthorities(authRoleGPOS.stream().map(authRole -> new RoleAuthority(authRole.getId(), authRole.getName())).collect(Collectors.toList()));
 
             List<Long> fucntionIds = authRoleFunctionAssociationMapper.selectFunctionIdsByRoleIds(roleIds);
-            List<AuthFunction> authFunctions = authFunctionMapper.selectByIds(fucntionIds);
-            userFunctionRoleGroupDetails.setFunctionAuthorities(authFunctions.stream().map(authFunction -> new FunctionAuthority(authFunction.getId(),authFunction.getName(), authFunction.getUrl())).collect(Collectors.toList()));
+            List<AuthFunctionGPO> authFunctionGPOS = authFunctionGPOMapper.selectByIds(fucntionIds);
+            userFunctionRoleGroupDetails.setFunctionAuthorities(authFunctionGPOS.stream().map(authFunction -> new FunctionAuthority(authFunction.getId(), authFunction.getName(), authFunction.getUrl())).collect(Collectors.toList()));
 
-            Long groupId = authUserGroupAssociationMapper.selectGroupIdByUserId(authUser.getId());
+            Long groupId = authUserGroupAssociationGPOMapper.selectGroupIdByUserId(authUserGPO.getId());
             if (groupId != null) {
-                AuthGroup authGroup = authGroupMapper.selectByPrimaryKey(groupId);
-                if (authGroup != null) {
-                    userFunctionRoleGroupDetails.setGroupAuthority(new GroupAuthority(authGroup.getId(),authGroup.getName()));
+                AuthGroupGPO authGroupGPO = authGroupGPOMapper.selectByPrimaryKey(groupId);
+                if (authGroupGPO != null) {
+                    userFunctionRoleGroupDetails.setGroupAuthority(new GroupAuthority(authGroupGPO.getId(), authGroupGPO.getName()));
                 }
             }
 
@@ -73,19 +73,19 @@ public class AuthUserDetailService implements UserDetailsManager {
 
     @Override
     public void createUser(UserDetails user) {
-        AuthUser authUser = new AuthUser();
-        authUser.setUsername(user.getUsername());
-        authUser.setPassword(messageDigestPasswordEncoder.encode(user.getPassword()));
-        authUserMapper.insert(authUser);
+        AuthUserGPO authUserGPO = new AuthUserGPO();
+        authUserGPO.setUsername(user.getUsername());
+        authUserGPO.setPassword(messageDigestPasswordEncoder.encode(user.getPassword()));
+        authUserGPOMapper.insert(authUserGPO);
 
         user.getAuthorities()
                 .stream()
                 .filter(g -> g instanceof RoleAuthority)
                 .forEach(g -> {
-                    AuthUserRoleAssociation authUserRoleAssociation = new AuthUserRoleAssociation();
-                    authUserRoleAssociation.setAuthUserId(authUser.getId());
-                    authUserRoleAssociation.setAuthRoleId(((RoleAuthority) g).getId());
-                    authUserRoleAssociationMapper.insert(authUserRoleAssociation);
+                    AuthUserRoleAssociationGPO authUserRoleAssociationGPO = new AuthUserRoleAssociationGPO();
+                    authUserRoleAssociationGPO.setAuthUserId(authUserGPO.getId());
+                    authUserRoleAssociationGPO.setAuthRoleId(((RoleAuthority) g).getId());
+                    authUserRoleAssociationGPOMapper.insert(authUserRoleAssociationGPO);
                 });
     }
 

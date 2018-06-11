@@ -1,10 +1,9 @@
 package com.yibaijin.service.boot.dao;
 
 import com.google.common.collect.Lists;
-import com.yibaijin.service.boot.dao.mapper.auth.AuthRoleMapper;
-import com.yibaijin.service.boot.dao.mapper.auth.AuthUserMapper;
-import com.yibaijin.service.boot.dao.model.auth.UserFunctionRoleGroupDetails;
-import com.yibaijin.service.boot.dao.model.db.auth.AuthRole;
+import com.yibaijin.service.boot.dao.mapper.auth.AuthRoleGPOMapper;
+import com.yibaijin.service.boot.dao.mapper.auth.AuthUserGPOMapper;
+import com.yibaijin.service.boot.dao.model.db.auth.AuthRoleGPO;
 import com.yibaijin.service.boot.dao.redis.UserFunctionRoleGroupDetailsRedisRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,10 +24,10 @@ import java.util.List;
 public class ServiceBootDaoApplicationTests {
 
     @Resource
-    AuthUserMapper authUserMapper;
+    AuthUserGPOMapper authUserMapper;
 
     @Resource
-    RedisTemplate<String,String> redisTemplate;
+    RedisTemplate<String, String> redisTemplate;
 
     @Resource
     RedisConnectionFactory redisConnectionFactory;
@@ -39,14 +38,14 @@ public class ServiceBootDaoApplicationTests {
     UserFunctionRoleGroupDetailsRedisRepository userFunctionRoleGroupDetailsRedisRepository;
 
     @Resource
-    AuthRoleMapper roleMapper;
+    AuthRoleGPOMapper roleMapper;
 
     @Test
     public void test() throws SQLException {
 //        UserFunctionRoleGroupDetails userFunctionRoleGroupDetails = new UserFunctionRoleGroupDetails( 1l,"123");
 //        userFunctionRoleGroupDetailsRedisRepository.save(userFunctionRoleGroupDetails);
 
-        List<AuthRole> authRoles = roleMapper.selectByIds(Lists.newArrayList(-1l));
+        List<AuthRoleGPO> authRoles = roleMapper.selectByIds(Lists.newArrayList(-1l));
 
         System.out.println(authRoles.size());
     }

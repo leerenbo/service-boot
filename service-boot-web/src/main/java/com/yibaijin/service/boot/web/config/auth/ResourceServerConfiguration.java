@@ -43,7 +43,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 //        // @formatter:on
 
         http.authorizeRequests().mvcMatchers("/api/user/regist").permitAll()
-                .mvcMatchers("/m/role").access("hasAuthority('/m/role') and hasAnyScope('w')")
+                .mvcMatchers("/m/role").access("#oauth2.hasScope('w')")
                 .anyRequest().authenticated();
     }
 
