@@ -1,9 +1,7 @@
 package com.yibaijin.service.boot.web.config.auth;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -11,8 +9,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-
-    public static final String SPARKLR_RESOURCE_ID = "sparklr";
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
@@ -41,9 +37,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 //                .regexMatchers(HttpMethod.GET, "/oauth/clients/.*")
 //                .access("#oauth2.clientHasRole('ROLE_CLIENT') and #oauth2.isClient() and #oauth2.hasScope('read')");
 //        // @formatter:on
-
-        http.authorizeRequests().mvcMatchers("/api/user/regist").permitAll()
-                .mvcMatchers("/m/role").access("#oauth2.hasScope('w')")
+        http.requestMatchers().mvcMatchers("/api/**", "/m/**").and()
+            .authorizeRequests()
+                .mvcMatchers("/api/user/regist").permitAll()
+                            .mvcMatchers("/m/role").access("#oauth2.hasScope('w')")
                 .anyRequest().authenticated();
     }
 
